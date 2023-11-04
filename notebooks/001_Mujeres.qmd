@@ -1,0 +1,25 @@
+---
+title: "Mujeres en el mundo y la ciencia"
+lang: es
+format:
+ revealjs:
+   slide-number: true
+   chalkboard:
+     buttons: false
+   theme: simple
+   logo: images/logo_ier.png
+   footer: <https://altamarmx.github.io>
+crossref: false
+---
+
+
+
+
+## Mujeres en el mundo
+
+![](images/mujeres.png)
+
+
+## Mujeres que ingresan en la UNAM
+
+![](images/unam.png)

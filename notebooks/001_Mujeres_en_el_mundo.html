@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="G. Barrios">
+
+<title>Mujeres en el mundo y México</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="001_Mujeres_en_el_mundo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="001_Mujeres_en_el_mundo_files/libs/quarto-html/quarto.js"></script>
+<script src="001_Mujeres_en_el_mundo_files/libs/quarto-html/popper.min.js"></script>
+<script src="001_Mujeres_en_el_mundo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="001_Mujeres_en_el_mundo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="001_Mujeres_en_el_mundo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="001_Mujeres_en_el_mundo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="001_Mujeres_en_el_mundo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="001_Mujeres_en_el_mundo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="001_Mujeres_en_el_mundo_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mujeres en el mundo y México</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>G. Barrios </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> MultipleLocator, MaxNLocator</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'estilo_enerdata.mplstyle'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># colores</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>azulier     <span class="op">=</span> <span class="st">"#1A3D6F"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>doradoier  <span class="op">=</span> <span class="st">'#C65C25'</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f     <span class="op">=</span> <span class="st">'../data/001_mujeres/API_SP.POP.TOTL.FE.ZS_DS2_es_excel_v2_6003288.xls'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data  <span class="op">=</span> pd.read_excel(f,sheet_name<span class="op">=</span><span class="st">'Data'</span>,skiprows<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> [<span class="st">'WLD'</span>,<span class="st">'MEX'</span>,<span class="st">'USA'</span>,<span class="st">'LCN'</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[data[<span class="st">'Country Code'</span>].isin(lista)]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span>  data.drop(columns<span class="op">=</span>[<span class="st">'Country Code'</span>,<span class="st">'Indicator Name'</span>,<span class="st">'Indicator Code'</span>])</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizar melt() para transformar el DataFrame</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>mundo <span class="op">=</span> data.melt(id_vars<span class="op">=</span>[<span class="st">'Country Name'</span>], var_name<span class="op">=</span><span class="st">'Year'</span>, value_name<span class="op">=</span><span class="st">'Mujeres'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora pivotando para que 'Country Name' sea la columna y 'Year' sea el índice</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>mundo <span class="op">=</span> mundo.pivot(index<span class="op">=</span><span class="st">'Year'</span>,columns<span class="op">=</span><span class="st">'Country Name'</span>,values<span class="op">=</span><span class="st">'Mujeres'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>mundo.index <span class="op">=</span> mundo.index.astype(<span class="bu">int</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>paises <span class="op">=</span> mundo.columns</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pais <span class="kw">in</span> paises:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    ax.plot(mundo[pais])</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    ax.text(mundo[pais].index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>,mundo[pais].iloc[<span class="op">-</span><span class="dv">1</span>], pais, ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax.plot(mundo[<span class="st">'México'</span>],color<span class="op">=</span>doradoier)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax.text(mundo[<span class="st">'México'</span>].index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>,mundo[<span class="st">'México'</span>].iloc[<span class="op">-</span><span class="dv">1</span>], </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'México'</span>, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>doradoier)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax.text(mundo[<span class="st">'México'</span>].index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>,mundo[<span class="st">'México'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span><span class="fl">.2</span>, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">str</span>(mundo[<span class="st">'México'</span>].iloc[<span class="op">-</span><span class="dv">1</span>].<span class="bu">round</span>(<span class="dv">1</span>)).join(<span class="st">" %"</span>), </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>doradoier,fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">48</span>,<span class="dv">52</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Mujeres [%]'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_locator( MultipleLocator(<span class="dv">10</span>))</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_locator(MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'images/mujeres.png'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-mujeres-mundo" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="001_Mujeres_en_el_mundo_files/figure-html/fig-mujeres-mundo-output-1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;1: <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mundo[<span class="st">'México'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>51.221222058502</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">'../data/001_mujeres/c03 pobesc total.xls'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_excel(f,skiprows<span class="op">=</span><span class="dv">5</span>,nrows<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(data)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Derretir el DataFrame para tener los años como filas</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>data_melted <span class="op">=</span> data.melt(id_vars<span class="op">=</span>[<span class="st">'Unnamed: 0'</span>], var_name<span class="op">=</span><span class="st">'Year'</span>, value_name<span class="op">=</span><span class="st">'Value'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivotear para obtener el porcentaje de mujeres como columnas</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>unam <span class="op">=</span> data_melted.pivot(index<span class="op">=</span><span class="st">'Year'</span>, columns<span class="op">=</span><span class="st">'Unnamed: 0'</span>, values<span class="op">=</span><span class="st">'Value'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Limpiar los nombres de las figuras para que solo muestren el último año (últimos 4 caracteres)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>unam <span class="op">=</span> unam.rename(index<span class="op">=</span><span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> unam[<span class="st">'Población escolar total'</span>]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>unam.index <span class="op">=</span> unam.index.astype(<span class="bu">int</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>unam <span class="op">=</span> unam<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>unam[<span class="st">'% mujeres'</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Year
+2000    49.891077
+2001    50.335280
+2002    50.614575
+2003    50.941182
+2004    51.442542
+2005    51.468533
+2006    51.242303
+2007    51.300000
+2008    51.300000
+2009    51.400000
+2010    51.400000
+2011    51.400000
+2012    51.100000
+2013    51.100000
+2014    51.100000
+2015    51.100000
+2016    50.850000
+2017    50.901616
+2018    51.110000
+2019    51.110000
+2020    51.500000
+2021    51.480000
+2022    51.480000
+2023    51.480000
+Name: % mujeres, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ax.plot(unam,color<span class="op">=</span>doradoier)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ax.text(unam.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>], <span class="st">'UNAM'</span>, ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'center'</span>,color<span class="op">=</span>doradoier)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax.text(unam.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span><span class="fl">.2</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">str</span>(unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>].<span class="bu">round</span>(<span class="dv">1</span>)).join(<span class="st">" %"</span>), </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,color<span class="op">=</span>doradoier,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ax.plot(mundo[<span class="st">'México'</span>])</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ax.text(mundo.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,mundo[<span class="st">'México'</span>].iloc[<span class="op">-</span><span class="dv">1</span>], </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'México'</span>, ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">48</span>,<span class="dv">52</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Mujeres [%]'</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_locator( MultipleLocator(<span class="dv">10</span>))</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_locator(MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'images/unam.png'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-unam" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="001_Mujeres_en_el_mundo_files/figure-html/fig-unam-output-1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;2: <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">'../data/001_mujeres/c16 persaca.xls'</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_excel(f, skiprows<span class="op">=</span><span class="dv">5</span>,nrows<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>data_melted <span class="op">=</span> data.melt(id_vars<span class="op">=</span>[<span class="st">'Unnamed: 0'</span>], var_name<span class="op">=</span><span class="st">'Year'</span>, value_name<span class="op">=</span><span class="st">'Porcentaje'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>acad <span class="op">=</span> data_melted.pivot(index<span class="op">=</span><span class="st">'Year'</span>, columns<span class="op">=</span><span class="st">'Unnamed: 0'</span>, values<span class="op">=</span><span class="st">'Porcentaje'</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> acad[<span class="st">"Personas"</span>]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>acad.index <span class="op">=</span> acad.index.astype(<span class="bu">int</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>acad <span class="op">=</span> acad<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># acad</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ax.plot(unam)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ax.text(unam.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>], </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'UNAM'</span>, ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>ax.text(unam.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.2</span> ,unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span><span class="fl">.7</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">str</span>(unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>].<span class="bu">round</span>(<span class="dv">1</span>)).join(<span class="st">" %"</span>), </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'center'</span>,fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>ax.plot(mundo[<span class="st">'México'</span>])</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>ax.text(mundo.index[<span class="dv">0</span>] <span class="op">+</span>  <span class="fl">.5</span>,mundo[<span class="st">'México'</span>].iloc[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">.6</span>, <span class="st">'México'</span>, ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>ax.plot(acad,color<span class="op">=</span>doradoier)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>ax.text(acad.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,acad[<span class="st">'% mujeres '</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Academicas'</span>, </span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>doradoier)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>ax.text(acad.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,acad[<span class="st">'% mujeres '</span>].iloc[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span><span class="fl">.6</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">str</span>(acad[<span class="st">'% mujeres '</span>].iloc[<span class="op">-</span><span class="dv">1</span>].<span class="bu">round</span>(<span class="dv">1</span>)).join(<span class="st">" %"</span>), </span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>doradoier,fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">38</span>,<span class="dv">52</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Mujeres [%]'</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_locator( MultipleLocator(<span class="dv">10</span>))</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_locator(MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'images/acad.png'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="001_Mujeres_en_el_mundo_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">'../data/001_mujeres/c25 sni.xls'</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_excel(f, skiprows<span class="op">=</span><span class="dv">5</span>,nrows<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>data_melted <span class="op">=</span> data.melt(id_vars<span class="op">=</span>[<span class="st">'Unnamed: 0'</span>], var_name<span class="op">=</span><span class="st">'Year'</span>, value_name<span class="op">=</span><span class="st">'Porcentaje'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sniunam <span class="op">=</span> data_melted.pivot(index<span class="op">=</span><span class="st">'Year'</span>, columns<span class="op">=</span><span class="st">'Unnamed: 0'</span>, values<span class="op">=</span><span class="st">'Porcentaje'</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> sniunam[<span class="st">"Total de investigadores en el SNI"</span>]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>sniunam.index <span class="op">=</span> sniunam.index.astype(<span class="bu">int</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>sniunam <span class="op">=</span> sniunam<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sni</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ax.plot(unam)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>ax.text(unam.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>], </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'UNAM'</span>, ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>ax.text(unam.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.2</span> ,unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span><span class="fl">.8</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">str</span>(unam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>].<span class="bu">round</span>(<span class="dv">1</span>)).join(<span class="st">" %"</span>), </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>ax.plot(mundo[<span class="st">'México'</span>])</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>ax.text(mundo.index[<span class="dv">0</span>] <span class="op">+</span>  <span class="fl">.5</span>,mundo[<span class="st">'México'</span>].iloc[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">.8</span>, </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'México'</span>, ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>ax.plot(acad)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>ax.text(acad.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,acad[<span class="st">'% mujeres '</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Academicas'</span>, </span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>ax.text(acad.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,acad[<span class="st">'% mujeres '</span>].iloc[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span><span class="fl">.8</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">str</span>(acad[<span class="st">'% mujeres '</span>].iloc[<span class="op">-</span><span class="dv">1</span>].<span class="bu">round</span>(<span class="dv">1</span>)).join(<span class="st">" %"</span>), </span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>ax.plot(sniunam,color<span class="op">=</span>doradoier)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>ax.text(sniunam.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,sniunam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">'SNI'</span>, </span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>doradoier)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>ax.text(sniunam.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">.5</span> ,sniunam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span><span class="fl">.8</span>,</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>        <span class="bu">str</span>(sniunam[<span class="st">'% mujeres'</span>].iloc[<span class="op">-</span><span class="dv">1</span>].<span class="bu">round</span>(<span class="dv">1</span>)).join(<span class="st">" %"</span>), </span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">'left'</span>, </span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>doradoier,fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">33</span>,<span class="dv">52</span>)</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Mujeres [%]'</span>)</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_locator( MultipleLocator(<span class="dv">10</span>))</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_locator(MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_locator( MultipleLocator(<span class="dv">5</span>))</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'images/sni_unam.png'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="001_Mujeres_en_el_mundo_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">"../data/001_mujeres/Padron_de_Beneficiarios_2021.xlsx"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sni <span class="op">=</span> pd.read_excel(f,usecols<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sni <span class="op">=</span> sni[sni[<span class="st">"NOBILIS"</span>].isin([<span class="st">"DRA."</span>,<span class="st">"DR."</span>])]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sni[<span class="st">'genero'</span>] <span class="op">=</span> sni[<span class="st">'NOBILIS'</span>].<span class="bu">map</span>({<span class="st">'DR.'</span>: <span class="st">'M'</span>, <span class="st">'DRA.'</span>: <span class="st">'F'</span>})</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Análisis descriptivo de la distribución de género en el conjunto de datos</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo general de género</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>genero_counts <span class="op">=</span> sni[<span class="st">'genero'</span>].value_counts()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponiendo que 'df' es el DataFrame que contiene los datos</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> genero_counts.<span class="bu">sum</span>()  <span class="co"># Esto calcula el número total de entradas</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>porcentajes <span class="op">=</span> (genero_counts <span class="op">/</span> total) <span class="op">*</span> <span class="dv">100</span>  <span class="co"># Esto calcula el porcentaje para cada género</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Porcentaje general de género</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>genero_percentage <span class="op">=</span> sni[<span class="st">'genero'</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de género por Categoría</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>genero_por_categoria <span class="op">=</span> sni.groupby([<span class="st">'CATEGORÍA'</span>, <span class="st">'genero'</span>]).size().unstack()</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de género por Área del Conocimiento</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>genero_por_area <span class="op">=</span> sni.groupby([<span class="st">'ÁREA DEL CONOCIMIENTO'</span>, <span class="st">'genero'</span>]).size().unstack()</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>genero_counts, genero_percentage, genero_por_categoria, genero_por_area</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>(genero
+ M    21145
+ F    13017
+ Name: count, dtype: int64,
+ genero
+ M    61.896259
+ F    38.103741
+ Name: proportion, dtype: float64,
+ genero        F      M
+ CATEGORÍA             
+ 1          6721  11033
+ 2          1608   3199
+ 3           641   1965
+ C          4047   4948,
+ genero                                             F     M
+ ÁREA DEL CONOCIMIENTO                                     
+ I.- FÍSICO-MATEMÁTICAS Y CIENCIAS DE LA TIERRA  1174  3949
+ II.- BIOLOGÍA Y QUÍMICA                         2275  2926
+ III.- MEDICINA Y CIENCIAS DE LA SALUD           1620  1488
+ IV.- HUMANIDADES Y CIENCIAS DE LA CONDUCTA      2509  2519
+ V.- CIENCIAS SOCIALES                           2500  3419
+ VI.- BIOTECNOLOGÍA Y CIENCIAS AGROPECUARIAS     1802  3032
+ VII.- INGENIERÍAS                               1137  3812)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Intentaremos generar la gráfica nuevamente con los valores porcentuales correctos</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear la gráfica de barras horizontales apiladas con la corrección</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))  <span class="co"># Ajustamos la altura para acomodar la nueva barra</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Dibujar las barras existentes para el SNI</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>ax.barh(<span class="st">"SNI"</span>, porcentajes[<span class="st">'F'</span>], color<span class="op">=</span><span class="st">'purple'</span>, label<span class="op">=</span><span class="st">'Mujeres en SNI'</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>ax.barh(<span class="st">"SNI"</span>, porcentajes[<span class="st">'M'</span>], left<span class="op">=</span>porcentajes[<span class="st">'F'</span>],label<span class="op">=</span><span class="st">'Hombres en SNI'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Dibujar las barras para la UNAM</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>porcentaje_mujeres_unam <span class="op">=</span> <span class="fl">40.1</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>porcentaje_hombres_unam <span class="op">=</span> <span class="dv">100</span> <span class="op">-</span> porcentaje_mujeres_unam</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>ax.barh(<span class="st">"UNAM"</span>, porcentaje_mujeres_unam, color<span class="op">=</span><span class="st">'purple'</span>, label<span class="op">=</span><span class="st">'Mujeres en UNAM'</span>,)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>ax.barh(<span class="st">"UNAM"</span>, porcentaje_hombres_unam, left<span class="op">=</span>porcentaje_mujeres_unam, </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'Hombres en UNAM'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Porcentaje [%]'</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar los valores de los porcentajes en las barras</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>ax.text(porcentajes[<span class="st">'F'</span>]<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="ss">f"</span><span class="sc">{</span>porcentajes[<span class="st">'F'</span>]<span class="sc">:.1f}</span><span class="ss">%"</span>, va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>ax.text(porcentajes[<span class="st">'F'</span>] <span class="op">+</span> porcentajes[<span class="st">'M'</span>]<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="ss">f"</span><span class="sc">{</span>porcentajes[<span class="st">'M'</span>]<span class="sc">:.1f}</span><span class="ss">%"</span>, va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>ax.text(porcentaje_mujeres_unam<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="ss">f"</span><span class="sc">{</span>porcentaje_mujeres_unam<span class="sc">:.1f}</span><span class="ss">%"</span>, va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>ax.text(porcentaje_mujeres_unam <span class="op">+</span> porcentaje_hombres_unam<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="ss">f"</span><span class="sc">{</span>porcentaje_hombres_unam<span class="sc">:.1f}</span><span class="ss">%"</span>, va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustes de estilo</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'bottom'</span>].set_color(<span class="st">'#DDDDDD'</span>)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()  <span class="co"># Ajusta la disposición para que todo quepa sin superponerse</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'images/sni.png'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="001_Mujeres_en_el_mundo_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Corregimos el mapeo de categorías usando los valores disponibles</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>categoria_map_correcto <span class="op">=</span> {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: <span class="st">'SNI 1'</span>, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>: <span class="st">'SNI 2'</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>: <span class="st">'SNI 3'</span>, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C'</span>: <span class="st">'Candidatx'</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicamos el mapeo correcto</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>sni[<span class="st">'CATEGORÍA_MAPEADA'</span>] <span class="op">=</span> sni[<span class="st">'CATEGORÍA'</span>].replace(categoria_map_correcto)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos los conteos y porcentajes por categoría</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>categoria_porcentajes <span class="op">=</span> sni.groupby([<span class="st">'CATEGORÍA_MAPEADA'</span>, <span class="st">'genero'</span>]).size().unstack().<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">/</span> x.<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Aseguramos el orden de las categorías para el gráfico</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>categoria_porcentajes <span class="op">=</span> categoria_porcentajes.reindex([<span class="st">'Candidatx'</span>, <span class="st">'SNI 1'</span>, <span class="st">'SNI 2'</span>, <span class="st">'SNI 3'</span>])</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear la gráfica de barras horizontales apiladas con los colores y título normal</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># # Dibujar las barras por categoría</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co"># for categoria in categoria_porcentajes.index:</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">#     ax.barh(categoria, categoria_porcentajes.loc[categoria, 'F'], color='purple')</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">#     ax.barh(categoria, categoria_porcentajes.loc[categoria, 'M'], left=categoria_porcentajes.loc[categoria, 'F'], color='skyblue')</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Dibujar las barras por categoría y agregar los valores dentro de las barras</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> categoria <span class="kw">in</span> categoria_porcentajes.index:</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    mujeres_value <span class="op">=</span> categoria_porcentajes.loc[categoria, <span class="st">'F'</span>]</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    hombres_value <span class="op">=</span> categoria_porcentajes.loc[categoria, <span class="st">'M'</span>]</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    ax.barh(categoria, mujeres_value, color<span class="op">=</span><span class="st">'purple'</span>)</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    ax.barh(categoria, hombres_value, left<span class="op">=</span>mujeres_value, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    ax.text(mujeres_value<span class="op">/</span><span class="dv">2</span>, categoria, <span class="ss">f"</span><span class="sc">{</span>mujeres_value<span class="sc">:.1f}</span><span class="ss">%"</span>, va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    ax.text(mujeres_value <span class="op">+</span> hombres_value<span class="op">/</span><span class="dv">2</span>, categoria, <span class="ss">f"</span><span class="sc">{</span>hombres_value<span class="sc">:.1f}</span><span class="ss">%"</span>, va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Porcentaje [%]'</span>)</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">101</span>, <span class="dv">25</span>))  <span class="co"># Establece las marcas del eje x de 0 a 100, de 25 en 25</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustes de estilo</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'bottom'</span>].set_color(<span class="st">'#DDDDDD'</span>)</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar la disposición</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'images/sni_niveles.png'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="001_Mujeres_en_el_mundo_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

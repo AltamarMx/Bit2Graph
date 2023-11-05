@@ -1,5 +1,5 @@
 ---
-title: "Mujeres en el mundo y la ciencia"
+title: "Mujeres en el mundo, <br>la UNAM <br>y<br> la ciencia"
 lang: es
 format:
  revealjs:
@@ -15,11 +15,58 @@ crossref: false
 
 
 
-## Mujeres en el mundo
+## El mundo
 
 ![](images/mujeres.png)
 
 
-## Mujeres que ingresan en la UNAM
+## Personas que ingresan a la UNAM
 
 ![](images/unam.png)
+
+
+## Personas académicas en la UNAM
+
+![](images/acad.png)
+
+## SNI
+
+<br>
+El Sistema Nacional de Investigadores   **reconoce y promueve** la calidad de la investigación científica y tecnológica en el país.
+
+Busca fomentar el **desarrollo y la diseminación del conocimiento**, así como incrementar la productividad científica en beneficio del progreso social y cultural de México. 
+
+Existen 4 niveles: Candidatura, Nivel 1, 2 y 3.
+
+## Mujeres academicas en la UNAM en el SNI
+
+![](images/sni_unam.png)
+
+
+## Mujeres en el SNI
+
+
+<br>
+<br>
+
+![](images/sni.png)
+
+## Mujeres por niveles en el SNI
+<br>
+
+![](images/sni_niveles.png)
+
+
+## Preguntas abiertas {auto-animate="true"}
+
+<br>
+<br>
+<br>
+
+::: incremental
+
+- ¿Cuál es la situación en el resto de universidades?
+- ¿Cómo contribuir cada une de nosotres a desaparecer la brecha de género?
+
+:::
+
